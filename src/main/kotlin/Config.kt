@@ -25,7 +25,7 @@ object Config: ReadOnlyPluginConfig("BiliConfig") {
     @ValueDescription("font")
     val font by value<String>("font.ttf")
 
-    @ValueDescription("font")
+    @ValueDescription("vtb获取地址")
     val url by value<String>("https://api.vtbs.moe/v1/short")
 
 }
