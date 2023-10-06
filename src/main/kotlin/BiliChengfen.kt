@@ -30,7 +30,7 @@ object BiliChengfen : KotlinPlugin(
     JvmPluginDescription(
         id = "com.feelmaple.bili-chengfen",
         name = "bili-chengfen",
-        version = "0.1.0",
+        version = "0.2.0",
 
     ) {
 author("feelmaple")
