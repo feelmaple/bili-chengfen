@@ -28,4 +28,7 @@ object Config: ReadOnlyPluginConfig("BiliConfig") {
     @ValueDescription("vtb获取地址")
     val url by value<String>("https://api.vtbs.moe/v1/short")
 
+    @ValueDescription("模板文件名称")
+    val template by value<String>("info.html")
+
 }

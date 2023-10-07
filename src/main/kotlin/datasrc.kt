@@ -193,11 +193,11 @@ suspend fun formatAttentions(attentions: List<Long>): List<HashMap<String, Any>>
         val data = root.asJsonObject.getAsJsonArray("data")
 
         for (i in 0 until data.size()) {
-            val namevalue = data[i].asJsonObject.get("name")
-            val uidvalue = data[i].asJsonObject.get("mid")
+            val namevalue = data[i].asJsonObject.get("name").asString
+            val uidvalue = data[i].asJsonObject.get("mid").asString
             val dict = hashMapOf<String, Any>(
-                "name" to namevalue.toString(),
-                "uid" to uidvalue.toString()
+                "name" to namevalue,
+                "uid" to uidvalue
             )
             gzf.add(dict)
         }
@@ -213,11 +213,11 @@ suspend fun formatAttentions(attentions: List<Long>): List<HashMap<String, Any>>
             val root = JsonParser.parseString(aaa as String?)
             val data = root.asJsonObject.getAsJsonArray("data")
             for (j in 0 until data.size()) {
-                val namevalue = data[j].asJsonObject.get("name")
-                val uidvalue = data[j].asJsonObject.get("mid")
+                val namevalue = data[j].asJsonObject.get("name").asString
+                val uidvalue = data[j].asJsonObject.get("mid").asString
                 val dict = hashMapOf<String, Any>(
-                    "name" to namevalue.toString(),
-                    "uid" to uidvalue.toString()
+                    "name" to namevalue,
+                    "uid" to uidvalue
                 )
                 gzf.add(dict)
             }
@@ -232,10 +232,10 @@ suspend fun formatFanMedal(fanMedalResp: String): MutableList<HashMap<String, An
     val data = root.asJsonObject.getAsJsonObject("data")
     val list = data.asJsonObject.getAsJsonArray("list")
     for(i in 0 until list.size()){
-        val uidvalue = list[i].asJsonObject.get("medal_info").asJsonObject.get("target_id")
-        val medalnamevalue = list[i].asJsonObject.get("medal_info").asJsonObject.get("medal_name")
-        val levelvalue = list[i].asJsonObject.get("medal_info").asJsonObject.get("level")
-        val namelvalue = list[i].asJsonObject.get("target_name")
+        val uidvalue = list[i].asJsonObject.get("medal_info").asJsonObject.get("target_id").asString
+        val medalnamevalue = list[i].asJsonObject.get("medal_info").asJsonObject.get("medal_name").asString
+        val levelvalue = list[i].asJsonObject.get("medal_info").asJsonObject.get("level").asString
+        val namelvalue = list[i].asJsonObject.get("target_name").asString
         val colorbordervalue = formatColor(
             list[i].asJsonObject.get("medal_info").asJsonObject.get("medal_color_border").asInt)
         val colorstartvalue = formatColor(
@@ -243,13 +243,13 @@ suspend fun formatFanMedal(fanMedalResp: String): MutableList<HashMap<String, An
         val colorendvalue = formatColor(
             list[i].asJsonObject.get("medal_info").asJsonObject.get("medal_color_end").asInt)
         val dict = hashMapOf<String, Any>(
-            "name" to namelvalue.toString(),
-            "medal_name" to medalnamevalue.toString(),
-            "uid" to uidvalue.toString(),
-            "level" to levelvalue.toString(),
-            "colorborder" to colorbordervalue.toString(),
-            "colorstart" to colorstartvalue.toString(),
-            "colorend" to colorendvalue.toString(),
+            "name" to namelvalue,
+            "medal_name" to medalnamevalue,
+            "uid" to uidvalue,
+            "level" to levelvalue,
+            "colorborder" to colorbordervalue,
+            "colorstart" to colorstartvalue,
+            "colorend" to colorendvalue,
 
             )
         medalf.add(dict)
@@ -266,11 +266,11 @@ fun formatVtb(vtbString: String): MutableList<Map<String, Any>> {
     val root = JsonParser.parseString(vtbString)
     val list = root.asJsonArray
     for(i in 0 until list.size()){
-        val midvalue = list[i].asJsonObject.get("mid")
-        val unamevalue = list[i].asJsonObject.get("uname")
+        val midvalue = list[i].asJsonObject.get("mid").asString
+        val unamevalue = list[i].asJsonObject.get("uname").asString
         val dict = mapOf(
-            "uid" to midvalue.toString(),
-            "name" to unamevalue.toString(),
+            "uid" to midvalue,
+            "name" to unamevalue,
         )
         vtbf.add(dict)
     }

@@ -30,7 +30,7 @@ object BiliChengfen : KotlinPlugin(
     JvmPluginDescription(
         id = "com.feelmaple.bili-chengfen",
         name = "bili-chengfen",
-        version = "0.2.0",
+        version = "0.3.0",
 
     ) {
 author("feelmaple")
@@ -127,8 +127,6 @@ author("feelmaple")
                     }
                     for (i in 0 until resultList.size) {
                         resultList[i]["index"] = i
-                        resultList[i]["upindex"] = resultList[i]["name"].toString().length-1
-                        resultList[i]["fanindex"] = resultList[i]["medal_name"].toString().length-1
                     }
 
                     val vmun = attentionuids.filter { it in vtbuids }
@@ -160,7 +158,7 @@ author("feelmaple")
 
                     )
                     // 将数据导入模板
-                    val data = resolveConfigFile("info.html").absolutePath
+                    val data = resolveConfigFile(Config.template).absolutePath
                     val template = PebbleEngine.Builder().build().getTemplate(data)
                     val writer = StringWriter()
                     template.evaluate(writer, info)
@@ -204,7 +202,7 @@ author("feelmaple")
                         (driver as JavascriptExecutor).executeScript("return document.documentElement.scrollWidth") as Long
                     val height =
                         (driver as JavascriptExecutor).executeScript("return document.documentElement.scrollHeight") as Long
-                    driver.manage().window().size = Dimension(width.toInt(), height.toInt())
+                    driver.manage().window().size = Dimension((width+1).toInt(), (height+1).toInt())
 
                     val srcFile = driver.getScreenshotAs(OutputType.FILE);
 
